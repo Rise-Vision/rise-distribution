@@ -6,6 +6,7 @@
   var jshint = require("gulp-jshint");
   var runSequence = require("run-sequence");
   var watch = require("gulp-watch");
+  var wct = require("web-component-tester").gulp.init(gulp);
 
   gulp.task("bump", function() {
     gulp.src(["./package.json"])
@@ -29,11 +30,15 @@
     gulp.watch("./*.html", ["build"]);
   });
 
+  gulp.task("test", function(cb) {
+    runSequence("test:local", cb);
+  });
+
   gulp.task("build", function (cb) {
     runSequence(["lint"], cb);
   });
 
   gulp.task("default", function(cb) {
-    runSequence("build", cb);
+    runSequence("test", "build", cb);
   });
 })();

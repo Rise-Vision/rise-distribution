@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Page - Distribution</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <link rel="import" href="../rise-distribution.html">
+
+</head>
+<body>
+  <rise-distribution distribution='[{"id":"my-display-id"},{"id":"abc123"}]'></rise-distribution>
+
+  <script>
+    suite("distribution", function() {
+      var distribution = document.querySelector("rise-distribution");
+
+      suite("canPlay", function() {
+        test("should return true if the Display ID matches a distribution", function() {
+          assert.isTrue(distribution.canPlay("abc123"));
+        });
+
+        test("should return false if the Display ID does not match a distribution", function() {
+          assert.isFalse(distribution.canPlay("invalid"));
+        });
+      });
+    });
+  </script>
+</body>
+</html>
