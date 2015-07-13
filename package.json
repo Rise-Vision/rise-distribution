@@ -2,6 +2,10 @@
   "name": "rise-distribution",
   "version": "1.0.0",
   "description": "The Rise distribution web component that controls the visibility of content on a Display.",
+  "scripts": {
+    "test": "gulp test",
+    "build": "gulp build"
+  },
   "directories": {
     "test": "test"
   },
@@ -25,6 +29,7 @@
     "gulp-jshint": "^1.10.0",
     "gulp-watch": "^4.2.4",
     "jshint-stylish": "^1.0.1",
-    "run-sequence": "^1.0.2"
+    "run-sequence": "^1.0.2",
+    "web-component-tester": "^3.3.0"
   }
 }
