@@ -1,26 +1,39 @@
 # Rise Distribution Web Component
 
 ## Introduction
-`rise-distribution` is a web component that controls whether or not a Playlist, or a component within a Playlist, shows on a Display based on a Display ID. It is intended to be used with the [`rise-page`](https://github.com/Rise-Vision/web-component-rise-page) and [`rise-playlist`](https://github.com/Rise-Vision/web-component-rise-playlist) components.
-.
-
-`rise-distribution` works in conjunction with [Rise Vision](http://www.risevision.com), the [digital signage management application](http://rva.risevision.com/) that runs on [Google Cloud](https://cloud.google.com).
+`rise-distribution` is a Polymer Web Component that works with [Rise Vision](https://www.risevision.com/), the digital signage management application for [Web Designers](http://risevision.com/web-designers). It controls whether or not a Playlist, or content inside of a Playlist, shows on a Display given a particular Display ID.
 
 At this time Chrome is the only browser that this project and Rise Vision supports.
 
 ## Usage
-To begin, you will need to install `rise-distribution` using Bower:
+To begin, you will need to install the following components using Bower:
 
 ```
-bower install https://github.com/Rise-Vision/web-component-rise-distribution.git
+bower install https://github.com/Rise-Vision/rise-page.git
+bower install https://github.com/Rise-Vision/rise-playlist.git
+bower install https://github.com/Rise-Vision/rise-playlist-item.git
+bower install https://github.com/Rise-Vision/rise-distribution.git
 ```
 
-Please see the [`rise-page`](https://github.com/Rise-Vision/web-component-rise-page) component for an example of how to structure your HTML.
+The above repositories, as well as their dependencies, are installed in the `bower_components` folder.
 
-### Attributes
-| Attribute                 | Type                                                                       | Default               |
-| ------------------------- | -------------------------------------------------------------------------- | --------------------- |
-| `distribution` (required) | `<array>` An array of Display IDs that the content should be shown on.     | ''
+Next, construct your HTML page. You should include `webcomponents-lite.min.js` before any code that touches the DOM, and load the web components using HTML imports. For example:
+```
+<rise-page id="page" display-id="your-display-id">
+  <rise-playlist id="playlist">
+    <rise-playlist-item duration="3">
+      <!-- Your content here. -->
+    </rise-playlist-item>
+    <rise-distribution distribution='[{"id":"your-display-id"}]'>
+    </rise-distribution>
+  </rise-playlist>
+</rise-page>
+```
+
+*Note:* All playlist and content elements must be assigned a unique `id` attribute.
+
+## Documentation
+For further documentation on `rise-distribution` properties, methods, and usage, please see [here](http://rise-vision.github.io/rise-distribution).
 
 ## Built With
 - [Polymer](https://www.polymer-project.org/)
@@ -28,6 +41,8 @@ Please see the [`rise-page`](https://github.com/Rise-Vision/web-component-rise-p
 - [npm](https://www.npmjs.org)
 - [Bower](http://bower.io/)
 - [Gulp](http://gulpjs.com/)
+- [Polyserve](https://www.npmjs.com/package/polyserve)
+- [web-component-tester](https://github.com/Polymer/web-component-tester) for testing
 
 ## Development
 
@@ -36,6 +51,7 @@ Please see the [`rise-page`](https://github.com/Rise-Vision/web-component-rise-p
 * [npm](https://www.npmjs.org/) & [Node.js](http://nodejs.org/) - npm is the default package manager for Node.js. npm runs through the command line and manages dependencies for an application. These dependencies are listed in the _package.json_ file.
 * [Bower](http://bower.io/) - Bower is a package manager for Javascript libraries and frameworks. All third-party Javascript dependencies are listed in the _bower.json_ file.
 * [Gulp](http://gulpjs.com/) - Gulp is a Javascript task runner. It lints, runs unit and E2E (end-to-end) tests, minimizes files, etc. Gulp tasks are defined in _gulpfile.js_.
+* [Polyserve](https://www.npmjs.com/package/polyserve) - A simple web server for using bower components locally.
 
 ### Local Development Environment Setup and Installation
 To make changes to the web component, you'll first need to install the dependencies:
@@ -44,13 +60,31 @@ To make changes to the web component, you'll first need to install the dependenc
 - [Node.js and npm](http://blog.nodeknockout.com/post/65463770933/how-to-install-node-js-and-npm)
 - [Bower](http://bower.io/#install-bower) - To install Bower, run the following command in Terminal: `npm install -g bower`. Should you encounter any errors, try running the following command instead: `sudo npm install -g bower`.
 - [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) - To install Gulp, run the following command in Terminal: `npm install -g gulp`. Should you encounter any errors, try running the following command instead: `sudo npm install -g gulp`.
+- [Polyserve](https://www.npmjs.com/package/polyserve) - To install Polyserve, run the following command in Terminal: `npm install -g polyserve`. Should you encounter any errors, try running the following command instead: `sudo npm install -g polyserve`.
 
 The web component can now be installed by executing the following commands in Terminal:
 ```
-git clone https://github.com/Rise-Vision/web-component-rise-distribution.git
-cd web-component-rise-distribution
+git clone https://github.com/Rise-Vision/rise-distribution.git
+cd rise-distribution
 npm install
 bower install
+```
+
+### Testing
+You can run the suite of tests from the command line or via a local web server using Polyserve.
+
+#### Command Line
+Execute the following command in Terminal to run the tests:
+```
+gulp test
+```
+
+#### Local Server
+Run the `polyserve` command in Terminal.
+
+In your browser, navigate to:
+```
+http://localhost:8080/components/rise-distribution/test/
 ```
 
 ### Deployment
@@ -79,9 +113,9 @@ All contributions are greatly appreciated and welcome! If you would first like t
 ## Resources
 If you have any questions or problems, please don't hesitate to join our lively and responsive community at http://community.risevision.com.
 
-If you are looking for user documentation on Rise Vision, please see http://www.risevision.com/help/users/
+If you are looking for user documentation on Rise Vision, please see https://help.risevision.com/user.
 
-If you would like more information on developing applications for Rise Vision, please visit http://www.risevision.com/help/developers/.
+If you would like more information on developing applications for Rise Vision, please visit https://help.risevision.com/developer.
 
 **Facilitator**
 
